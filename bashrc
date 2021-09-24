@@ -116,3 +116,42 @@ if ! shopt -oq posix; then
   fi
 fi
 
+
+# HISTORY
+
+HISTSIZE=100000
+HISTFILESIZE=200000
+
+
+# ALIASES
+
+alias ll='/bin/ls -lhaF'
+alias fucking='sudo'
+
+
+# EDITOR
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+
+# PROMPT
+
+. /opt/git/git-prompt.sh
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+
+# this function gets the current path for the prompt, abbreviating if necessary
+__current_path () {
+  CURRENTPATH=`pwd`
+  if [ `expr length "$CURRENTPATH"` -gt 40 ]
+  then
+    echo -n '...';
+    echo "$CURRENTPATH" | tail -c 37;
+  else
+    echo "$CURRENTPATH";
+  fi
+}
+
+export PS1='\e[0;32m$(__current_path)/ $(__git_ps1 " (%s)")\$ \e[m'
+
