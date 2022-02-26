@@ -156,3 +156,5 @@ __current_path () {
 
 export PS1='$(__current_path)/ $(__git_ps1 "(%s) ")\$ '
 
+# Add GO things to $PATH
+PATH=$PATH:~/go/bin/
